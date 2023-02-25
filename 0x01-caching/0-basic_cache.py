@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 implements a caching system that
 Inherits from BaseCaching
@@ -17,7 +17,7 @@ class BasicCache(BaseCaching):
         """
         if item is None or key is None:
             return
-        setattr(self.cache_data, key, item)
+        self.cache_data[key] = item
 
     def get(self, key):
         """
