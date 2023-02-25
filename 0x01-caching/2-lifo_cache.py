@@ -8,7 +8,7 @@ from collections import OrderedDict
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class FIFOCache(BaseCaching):
+class LIFOCache(BaseCaching):
     """
     objects implements a LIFO cache replacement policy
     """
@@ -25,11 +25,12 @@ class FIFOCache(BaseCaching):
         """
         if item is None or key is None:
             return
-        del_key = list(self.cache_data)[-1]
+        if key not in self.cache_data:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+                del_key = list(self.cache_data)[-1]
+                self.cache_data.pop(del_key)
+                print("DISCARD: {}".format(del_key))
         self.cache_data[key] = item
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            self.cache_data.pop(del_key)
-            print("DISCARD: {}".format(del_key))
 
     def get(self, key):
         """
