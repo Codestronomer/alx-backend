@@ -26,11 +26,15 @@ class MRUCache(BaseCaching):
         """
         if item is None or key is None:
             return
-        self.cache_data[key] = item
-        if len(self.cache_data) > BaseCaching.MAX_ITEMS:
-            del_key = list(self.cache_data)[0]
-            self.cache_data.pop(del_key)
-            print("DISCARD: {}".format(del_key))
+        if key not in self.cache_data:
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+                del_key = list(self.cache_data)[0]
+                self.cache_data.pop(del_key)
+                print("DISCARD: {}".format(del_key))
+            self.cache_data[key] = item
+            self.cache_data.move_to_end(key, last=False)
+        else:
+            self.cache_data[key] = item
 
     def get(self, key):
         """
