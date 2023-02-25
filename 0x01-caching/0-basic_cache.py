@@ -15,7 +15,7 @@ class BasicCache(BaseCaching):
         """
         Inserts an item into the cache
         """
-        if item is not None && key is not None:
+        if item is not None and key is not None:
             setattr(self.cache_data, key, item)
 
     def get(self, key):
