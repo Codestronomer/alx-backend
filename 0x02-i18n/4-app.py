@@ -1,4 +1,4 @@
-i#!/usr/bin/env python3
+#!/usr/bin/env python3
 """
 Module contains a simple flask app to demonstrate internalization
 and localization in flask
@@ -23,7 +23,7 @@ babel = Babel(app)
 
 
 @babel.localeselector
-def get_locale() -> str:
+def get_locale():
     """
     gets the user's default locales and returns the best match
     """
