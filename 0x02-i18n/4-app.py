@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+i#!/usr/bin/env python3
 """
 Module contains a simple flask app to demonstrate internalization
 and localization in flask
@@ -27,6 +27,9 @@ def get_locale() -> str:
     """
     gets the user's default locales and returns the best match
     """
+    url_locale = request.args.get('locale')
+    if url_locale and url_locale in app.config['LANGUAGES']:
+        return url_locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
@@ -35,7 +38,7 @@ def home() -> str:
     """
     Flask application entry point
     """
-    return render_template('3-index.html')
+    return render_template('4-index.html')
 
 
 if __name__ == '__main__':
