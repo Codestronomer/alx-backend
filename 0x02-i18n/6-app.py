@@ -24,7 +24,7 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-i    """
+    """
     gets the user's default locales and returns the best match
     """
     url_locale = request.args.get('locale')
