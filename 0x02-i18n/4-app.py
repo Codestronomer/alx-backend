@@ -28,7 +28,7 @@ def get_locale():
     gets the user's default locales and returns the best match
     """
     url_locale = request.args.get('locale')
-    if url_locale and url_locale in app.config['LANGUAGES']:
+    if url_locale in app.config['LANGUAGES']:
         return url_locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
